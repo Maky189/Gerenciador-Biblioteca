@@ -1,5 +1,7 @@
 package com.biblioteca;
 
+import java.util.Scanner;
+
 import com.biblioteca.model.Livro;
 import com.biblioteca.repository.LivroRepository;
 
@@ -9,7 +11,14 @@ public class BibliotecaApp {
 
         try {
             // Adicionar um livro
-            Livro livro = new Livro("1", "O Senhor dos Anéis", "J.R.R. Tolkien", true);
+
+            Scanner teclado = new Scanner(System.in);
+            System.out.println("Coloque o título do livro:");  
+            String book = teclado.next();
+            System.out.println("Coloque o autor do livro:");
+            String autor = teclado.next();
+
+            Livro livro = new Livro("1", book, autor, true);
             livroRepository.adicionarLivro(livro);
             System.out.println("Livro adicionado!");
 
@@ -25,6 +34,7 @@ public class BibliotecaApp {
             // Remover um livro
             livroRepository.removerLivro("1");
             System.out.println("Livro removido!");
+            teclado.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
