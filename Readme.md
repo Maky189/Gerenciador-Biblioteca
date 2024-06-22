@@ -18,24 +18,24 @@ The project is organized into the following directories and files:
 ### Model Classes
 
 #### Livro.java
-This class represents a book in the library. It includes attributes such as `id`, `title`, `author`, and `availability`. It provides constructors for creating instances of books, as well as getter and setter methods for accessing and modifying the book's attributes.
+This class represents a book in the library. It includes attributes such as `id`, `titulo`, `autor`, and `disponnivvel`. It provides constructors for creating instances of books, as well as getter and setter methods for accessing and modifying the book's attributes.
 
 #### Usuario.java
-This class represents a user of the library. Attributes include `id`, `name`, and `email`. Like the `Book` class, it provides constructors and getter/setter methods to facilitate the creation and manipulation of user objects.
+This class represents a user of the library. Attributes include `id`, `nome`, `numero`, and `email`. Like the `Livro` class, it provides constructors and getter/setter methods to facilitate the creation and manipulation of user objects.
 
 #### Emprestimo.java
-This class represents a loan transaction, which involves lending a book to a user. It includes attributes such as `id`, `bookId`, `userId`, `loanDate`, and `returnDate`. Constructors and getter/setter methods are provided for handling loan data.
+This class represents a loan transaction, which involves lending a book to a user. It includes attributes such as `id`, `LivroId`, `usuarioId`, `imprestimoDate`, and `retornoDate`. Constructors and getter/setter methods are provided for handling loan data.
 
 ### Repositorio Classes
 
 #### LivroRepository.java
-This class is responsible for performing CRUD operations on the `Book` model. It includes methods for adding, retrieving, updating, and deleting books in the database. It utilizes the `DatabaseUtil` class to establish a connection to the database and execute SQL queries.
+This class is responsible for performing CRUD operations on the `Livro` model. It includes methods for adding, retrieving, updating, and deleting books in the database. It utilizes the `DatabaseUtil` class to establish a connection to the database and execute SQL queries.
 
 #### UsuarioRepository.java
-Similar to `BookRepository`, this class handles the CRUD operations for the `User` model. It includes methods for managing user data in the database, ensuring users can be added, retrieved, updated, and deleted.
+Similar to `LivroRepository`, this class handles the CRUD operations for the `Usuario` model. It includes methods for managing user data in the database, ensuring users can be added, retrieved, updated, and deleted.
 
 #### EmprestimoRepository.java
-This class manages the `Loan` model, providing methods to handle loan transactions in the database. It supports operations such as adding new loans, retrieving loan information, updating loan details, and deleting loans.
+This class manages the `Emprestimo` model, providing methods to handle loan transactions in the database. It supports operations such as adding new loans, retrieving loan information, updating loan details, and deleting loans.
 
 ### Utility Class
 
@@ -68,13 +68,14 @@ CREATE TABLE Livro (
     disponivel BOOLEAN NOT NULL
 );
 
-CREATE TABLE User (
+CREATE TABLE Usuario (
     id VARCHAR(50) PRIMARY KEY,
     nome VARCHAR(255) NOT NULL,
-    email VARCHAR(255) NOT NULL
+    email VARCHAR(255) NOT NULL,
+    numero VARCHAR(255) NOT NULL
 );
 
-CREATE TABLE Loan (
+CREATE TABLE EMPRESTIMO (
     id VARCHAR(50) PRIMARY KEY,
     LivroId VARCHAR(50),
     usuarioId VARCHAR(50),
@@ -83,4 +84,30 @@ CREATE TABLE Loan (
     FOREIGN KEY (Livrod) REFERENCES Livro(id),
     FOREIGN KEY (LivroId) REFERENCES Usuario(id)
 );
+```
+**Update Database Configuration**:   
+Update the `DatabaseUtil.java` class with your MySQL database URL, username, and password.
+
+### Verifying the Availability of the MySQL JDBC Driver
+
+Make sure the MySQL JDBC driver is available in the classpath. If you're using Maven, include the dependency in your pom.xml:
+
+```xml
+<dependency>
+    <groupId>mysql</groupId>
+    <artifactId>mysql-connector-java</artifactId>
+    <version>8.0.28</version>
+</dependency>
+```
+This will ensure the MySQL JDBC driver is available for your application.
+
+## Running the Application
+
+Compiling and Running
+In IntelliJ IDEA, you can compile and run the application by right-clicking on BibliotecaApp and selecting Run 'BibliotecaApp.main()'.
+
+Expected Output
+If everything is configured correctly, you should see the input for books and the output indicating that the operations were performed successfully
+
+Remember that all the methods in `Usuario`, `Livro` and `Emprestimo` are to be used individualy.
 

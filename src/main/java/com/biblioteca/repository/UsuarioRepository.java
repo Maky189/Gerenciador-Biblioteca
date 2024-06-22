@@ -10,12 +10,13 @@ import java.sql.SQLException;
 
 public class UsuarioRepository {
     public void adicionarUsuario(Usuario usuario) throws SQLException {
-        String sql = "INSERT INTO Usuario (id, nome, email) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO Usuario (id, nome, email, numero) VALUES (?, ?, ?, ?)";
         try (Connection conn = DatabaseUtil.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, usuario.getId());
             stmt.setString(2, usuario.getNome());
             stmt.setString(3, usuario.getEmail());
+            stmt.setString(3, usuario.getnumero());
             stmt.executeUpdate();
         }
     }
@@ -27,7 +28,7 @@ public class UsuarioRepository {
             stmt.setString(1, id);
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
-                    return new Usuario(rs.getString("id"), rs.getString("nome"), rs.getString("email"));
+                    return new Usuario(rs.getString("id"), rs.getString("nome"), rs.getString("email"), rs.getString("numero"));
                 }
             }
         }
@@ -35,11 +36,12 @@ public class UsuarioRepository {
     }
 
     public void atualizarUsuario(Usuario usuario) throws SQLException {
-        String sql = "UPDATE Usuario SET nome = ?, email = ? WHERE id = ?";
+        String sql = "UPDATE Usuario SET nome = ?, email = ?, numero = ? WHERE id = ?";
         try (Connection conn = DatabaseUtil.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, usuario.getNome());
             stmt.setString(2, usuario.getEmail());
+            stmt.setString(3, usuario.getnumero());
             stmt.setString(3, usuario.getId());
             stmt.executeUpdate();
         }
