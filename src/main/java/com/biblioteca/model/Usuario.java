@@ -1,5 +1,6 @@
 package com.biblioteca.model;
 
+// This class handles the usuario objects operations and has its getters and setters too
 public class Usuario {
     private String id;
     private String nome;

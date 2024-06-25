@@ -5,6 +5,7 @@ import java.util.Scanner;
 import com.biblioteca.model.Livro;
 import com.biblioteca.repository.LivroRepository;
 
+// This is the main class of my Library
 public class BibliotecaApp {
     public static void main(String[] args) {
         LivroRepository livroRepository = new LivroRepository();

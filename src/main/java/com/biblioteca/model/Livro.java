@@ -1,12 +1,13 @@
 package com.biblioteca.model;
 
+// This class handles the livro object operations
 public class Livro {
     private String id;
     private String titulo;
     private String autor;
     private boolean disponivel;
 
-    public Livro() {}
+   
 
     public Livro(String id, String titulo, String autor, boolean disponivel) {
         this.id = id;

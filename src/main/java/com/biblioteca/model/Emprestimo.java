@@ -2,6 +2,7 @@ package com.biblioteca.model;
 
 import java.util.Date;
 
+// This class handles all the emprestimo operations
 public class Emprestimo {
     private String id;
     private String livroId;
@@ -9,8 +10,7 @@ public class Emprestimo {
     private Date dataEmprestimo;
     private Date dataDevolucao;
 
-    public Emprestimo() {}
-
+    // Getters and setters
     public Emprestimo(String id, String livroId, String usuarioId, Date dataEmprestimo, Date dataDevolucao) {
         this.id = id;
         this.livroId = livroId;
